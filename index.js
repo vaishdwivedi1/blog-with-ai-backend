@@ -6,9 +6,9 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import serverless from "serverless-http";
 import connectDB from "./config/db.js";
-// import "./config/passport.js";
-// import loginRoutes from "./routes/authRoute.js";
-// import blogRoutes from "./routes/blogRoute.js";
+import "./config/passport.js";
+import loginRoutes from "./routes/authRoute.js";
+import blogRoutes from "./routes/blogRoute.js";
 import cookieSession from "cookie-session";
 
 const app = express();
@@ -40,8 +40,8 @@ await connectDB();
 // ----------------------
 // Routes AFTER DB is connected
 // ----------------------
-// app.use("/api/auth", loginRoutes);
-// app.use("/api/blog", blogRoutes);
+app.use("/api/auth", loginRoutes);
+app.use("/api/blog", blogRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running!");
